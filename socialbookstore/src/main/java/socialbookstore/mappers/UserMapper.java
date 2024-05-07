@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 
 import socialbookstore.domainmodel.Role;
+import socialbookstore.domainmodel.User;
 
 public interface UserMapper {
 	
@@ -31,4 +32,6 @@ public interface UserMapper {
 	boolean isCredentialsNonExpired();
 
 	boolean isEnabled();
+
+	User findById(String username);
 }

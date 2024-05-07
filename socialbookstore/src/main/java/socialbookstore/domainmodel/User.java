@@ -33,7 +33,12 @@ public class User implements UserDetails {
     public void setRole(Role role) {
         this.role = role;
     }
-
+    
+    public User findById(String userName) {
+    	// TODO retrieve from database, how?
+    	return this;
+    }
+    
     // UserDetails interface methods
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -64,5 +69,5 @@ public class User implements UserDetails {
         return true;
     }
 
-    // Additional methods can be defined here as necessary
+    
 }

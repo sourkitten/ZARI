@@ -15,11 +15,14 @@ public class UserServiceimpl implements UserService,UserDetailsService{
 
     @Autowired
     private UserMapper userDAO;  // Assuming UserMapper is an interface for data access
-
+    
+    // TODO this doesn't update the database. Where update?
     @Override
     public void saveUser(User user) {
-        //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        //userDAO.save(user);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userDAO.setUsername(user.getUsername());
+        userDAO.setRole(user.getRole());
+        userDAO.setPassword(user.getPassword());
     }
 
     @Override
@@ -28,10 +31,10 @@ public class UserServiceimpl implements UserService,UserDetailsService{
     	return false;
     }
 
+    // TODO How actually pull data?
     @Override
     public User findById(String username) {
-		return null;
-        //return userDAO.findById(username);
+        return userDAO.findById(username);
     }
 
 	@Override

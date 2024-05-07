@@ -6,6 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import socialbookstore.services.UserService;
+import socialbookstore.services.UserProfileService;
+import socialbookstore.domainmodel.User;
+
 @Controller
 public class UserController {
 
@@ -62,6 +66,9 @@ public class UserController {
 	}
     public String deleteBookRequest(String username, int bookid, Model model) {
 		return null;
+	}
+	public void register(User user) {
+		userService.saveUser(user);
 	}
 	    
 }
