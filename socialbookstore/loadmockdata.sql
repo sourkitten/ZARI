@@ -1,7 +1,7 @@
 INSERT INTO User (User, Role, Pass, FullName, Age) VALUES
-('alice', 'Admin', '123', 'Alice Pleasance Liddell',17),
-('bob', 'User', '123', 'Bob Marley', 36),
-('kate', 'User', '123', 'Katy Perry', 39);
+('alice', 'Admin', '$2a$10$r3K2qRNpC1syITRV8oMDmOYO/DiK9ANRP5xbJvGsmVYIdwLsUVTIu', 'Alice Pleasance Liddell',17),
+('bob', 'User', '$2a$10$r3K2qRNpC1syITRV8oMDmOYO/DiK9ANRP5xbJvGsmVYIdwLsUVTIu', 'Bob Marley', 36),
+('kate', 'User', '$2a$10$r3K2qRNpC1syITRV8oMDmOYO/DiK9ANRP5xbJvGsmVYIdwLsUVTIu', 'Katy Perry', 39);
 
 INSERT INTO Author (Id, Name) VALUES
 (1, 'George Orwell'),

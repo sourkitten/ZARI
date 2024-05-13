@@ -1,6 +1,8 @@
 package socialbookstore.domainmodel;
 
 import java.util.Collection;
+import java.util.Collections;
+
 import org.springframework.security.core.GrantedAuthority;
 
 public class User implements UserDetails {
@@ -42,9 +44,9 @@ public class User implements UserDetails {
     // UserDetails interface methods
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singleton(() -> "ROLE_" + role.name());
     }
-
+    
     @Override
     public boolean isAccountNonExpired() {
         // Logic to determine if the account is non-expired

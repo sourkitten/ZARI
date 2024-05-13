@@ -60,4 +60,8 @@ public class UserProfile {
         this.bookOffers = bookOffers;
     }
 	
+    public UserProfile findById(String userName) {
+    	// TODO retrieve from database, how?
+    	return this;
+    }
 }
