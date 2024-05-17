@@ -1,20 +1,34 @@
 CREATE DATABASE  IF NOT EXISTS `secure_users_directory`;
--- Drop existing users table
+
+-- Drop book_offers table if it exists
+DROP TABLE IF EXISTS book_offers;
+
+-- Drop users table if it exists
 DROP TABLE IF EXISTS users;
 
--- Create new users table with additional profile information
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_name VARCHAR(255) DEFAULT NULL,
-  password VARCHAR(255) DEFAULT NULL,
-  role VARCHAR(255) DEFAULT NULL,
-  full_name VARCHAR(255) DEFAULT NULL,
-  address TEXT DEFAULT NULL,
-  age INT DEFAULT NULL,
-  phone_number VARCHAR(20) DEFAULT NULL,
-  preferred_categories VARCHAR(50) DEFAULT NULL,
-  favorite_authors VARCHAR(255) DEFAULT NULL
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL,
+    full_name VARCHAR(255),
+    address VARCHAR(255),
+    age INT,
+    phone_number VARCHAR(20),
+    preferred_categories TEXT,
+    favorite_authors TEXT
 );
 
+-- Create book_offers table
+CREATE TABLE book_offers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    summary TEXT NOT NULL,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
 
     

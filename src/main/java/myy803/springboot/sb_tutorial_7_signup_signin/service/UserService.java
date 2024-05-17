@@ -1,15 +1,10 @@
 package myy803.springboot.sb_tutorial_7_signup_signin.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
 import myy803.springboot.sb_tutorial_7_signup_signin.model.User;
 
-@Service
 public interface UserService {
-	public void saveUser(User user);
-    public boolean isUserPresent(User user);
+    void saveUser(User user);
+    boolean isUserPresent(User user);
     User getCurrentUser();
     void updateUserProfile(User updatedUser);
-    
 }

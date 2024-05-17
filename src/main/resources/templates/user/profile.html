@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <h2>User Profile</h2>
-    <!-- Form to update user profile -->
-    <form th:action="@{/user/profile/save}" method="post" th:object="${user}">
-        <!-- Input field for full name -->
+    <form th:action="@{/user/profile/save}" method="post" th:object="${user}" onsubmit="submitCategories()">
+        <!-- Full Name -->
         <div class="form-group">
             <label for="fullName">Full Name:</label>
-            <input type="text" class="form-control" id="fullName" name="fullName" th:value="${user.fullName}">
+            <input type="text" class="form-control" id="fullName" name="fullName" th:field="*{fullName}" required>
         </div>
-        <!-- Input field for address -->
+        <!-- Address -->
         <div class="form-group">
             <label for="address">Address:</label>
-            <input type="text" class="form-control" id="address" name="address" th:value="${user.address}">
+            <input type="text" class="form-control" id="address" name="address" th:field="*{address}" required>
         </div>
-        <!-- Input field for age -->
+        <!-- Age -->
         <div class="form-group">
             <label for="age">Age:</label>
-            <input type="number" class="form-control" id="age" name="age" th:value="${user.age}">
+            <input type="number" class="form-control" id="age" name="age" th:field="*{age}" required>
         </div>
-        <!-- Input field for phone number -->
+        <!-- Phone Number -->
         <div class="form-group">
             <label for="phoneNumber">Phone Number:</label>
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}">
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
         </div>
-        <!-- Input field for preferred book categories -->
+        <!-- Preferred Categories -->
         <div class="form-group">
             <label for="preferredCategories">Preferred Book Categories:</label>
-            <input type="text" class="form-control" id="preferredCategories" name="preferredCategories" th:value="${user.preferredCategories}">
+            <input type="hidden" id="preferredCategories" name="preferredCategories" th:field="*{preferredCategories}">
+            <select multiple class="form-control" id="categorySelect">
+                <option value="Art" th:selected="${#lists.contains(categories, 'Art')}">Art</option>
+                <option value="Comic" th:selected="${#lists.contains(categories, 'Comic')}">Comic</option>
+                <option value="Fantasy" th:selected="${#lists.contains(categories, 'Fantasy')}">Fantasy</option>
+                <option value="Fiction" th:selected="${#lists.contains(categories, 'Fiction')}">Fiction</option>
+                <option value="Biographies" th:selected="${#lists.contains(categories, 'Biographies')}">Biographies</option>
+                <option value="History" th:selected="${#lists.contains(categories, 'History')}">History</option>
+                <option value="Science" th:selected="${#lists.contains(categories, 'Science')}">Science</option>
+                <option value="Literature" th:selected="${#lists.contains(categories, 'Literature')}">Literature</option>
+                <option value="Adventure" th:selected="${#lists.contains(categories, 'Adventure')}">Adventure</option>
+                <option value="Crime" th:selected="${#lists.contains(categories, 'Crime')}">Crime</option>
+                <option value="Other" th:selected="${#lists.contains(categories, 'Other')}">Other</option>
+            </select>
         </div>
-        <!-- Input field for favorite authors -->
+        <!-- Favorite Authors -->
         <div class="form-group">
             <label for="favoriteAuthors">Favorite Authors:</label>
-            <input type="text" class="form-control" id="favoriteAuthors" name="favoriteAuthors" th:value="${user.favoriteAuthors}">
+            <input type="text" class="form-control" id="favoriteAuthors" name="favoriteAuthors" th:field="*{favoriteAuthors}" required>
         </div>
-        <!-- Submit button -->
+        <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
+
+<!-- Script to handle category selection -->
+<script>
+    function submitCategories() {
+        const selectElement = document.getElementById('categorySelect');
+        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+        const categoriesString = selectedOptions.join(',');
+        console.log('Categories:', categoriesString); // Debug print
+        document.getElementById('preferredCategories').value = categoriesString;
+    }
+</script>
 </body>
 </html>

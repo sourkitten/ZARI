@@ -1,163 +1,153 @@
 package myy803.springboot.sb_tutorial_7_signup_signin.model;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
-@Table(name="users")
-public class User implements UserDetails{
+@Table(name = "users")
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="user_name", unique=true)
-	private String username;
-	
-	@Column(name="password")
-	private String password;
-	
+    @Column(name = "user_name", unique = true)
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
     @Enumerated(EnumType.STRING)
-    @Column(name="role")
-	private Role role;
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		 SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
-	     return Collections.singletonList(authority);
-	}
-	
+    @Column(name = "role")
+    private Role role;
+
     // Additional profile information
-    @Column(name="full_name")
+    @Column(name = "full_name")
     private String fullName;
 
-    @Column(name="address")
+    @Column(name = "address")
     private String address;
 
-    @Column(name="age")
+    @Column(name = "age")
     private int age;
 
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
-    
+
     @Column(name = "preferred_categories")
     private String preferredCategories;
 
     @Column(name = "favorite_authors")
     private String favoriteAuthors;
 
+    // Getters and setters
+    public int getId() {
+        return id;
+    }
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	@Override
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
-	
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public String getPreferredCategories() {
+        return preferredCategories;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public void setPreferredCategories(String preferredCategories) {
+        this.preferredCategories = preferredCategories;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getFavoriteAuthors() {
+        return favoriteAuthors;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setFavoriteAuthors(String favoriteAuthors) {
+        this.favoriteAuthors = favoriteAuthors;
+    }
 
-	public String getPreferredCategories() {
-		return preferredCategories;
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
+        return Collections.singletonList(authority);
+    }
 
-	public void setPreferredCategories(String preferredCategories) {
-		this.preferredCategories = preferredCategories;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	public String getFavoriteAuthors() {
-		return favoriteAuthors;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	public void setFavoriteAuthors(String favoriteAuthors) {
-		this.favoriteAuthors = favoriteAuthors;
-	}	
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
