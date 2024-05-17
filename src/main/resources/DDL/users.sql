@@ -20,14 +20,13 @@ CREATE TABLE IF NOT EXISTS users (
     favorite_authors TEXT
 );
 
--- Create book_offers table
 CREATE TABLE book_offers (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
+    authors VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
     summary TEXT NOT NULL,
-    user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

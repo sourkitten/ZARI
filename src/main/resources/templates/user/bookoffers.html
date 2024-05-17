@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Book Offers</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>My Book Offers</h2>
+    <div th:if="${#lists.isEmpty(bookOffers)}">
+        <p>You have not added any book offers yet.</p>
+    </div>
+    <div th:if="${!#lists.isEmpty(bookOffers)}">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Authors</th>
+                    <th>Category</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bookOffer : ${bookOffers}">
+                    <td th:text="${bookOffer.title}">Title</td>
+                    <td th:text="${bookOffer.authors}">Authors</td>
+                    <td th:text="${bookOffer.category}">Category</td>
+                    <td th:text="${bookOffer.summary}">Summary</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="/user/bookoffer" class="btn btn-primary">Add New Book Offer</a>
+</div>
+</body>
+</html>

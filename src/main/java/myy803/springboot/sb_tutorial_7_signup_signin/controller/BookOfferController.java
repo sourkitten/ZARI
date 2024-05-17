@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class BookOfferController {
@@ -24,7 +27,9 @@ public class BookOfferController {
 
     @GetMapping("/bookoffer")
     public String showBookOfferForm(Model model) {
-        model.addAttribute("bookOffer", new BookOffer());
+        BookOffer bookOffer = new BookOffer();
+        model.addAttribute("bookOffer", bookOffer);
+        model.addAttribute("categories", getCategoriesList(bookOffer.getCategory()));
         return "user/bookoffer";
     }
 
@@ -41,5 +46,9 @@ public class BookOfferController {
         User currentUser = userService.getCurrentUser();
         model.addAttribute("bookOffers", bookOfferService.getBookOffersByUser(currentUser.getId()));
         return "user/bookoffers";
+    }
+
+    private List<String> getCategoriesList(String categories) {
+        return categories != null && !categories.isEmpty() ? Arrays.asList(categories.split(",")) : Arrays.asList();
     }
 }
