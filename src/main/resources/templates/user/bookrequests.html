@@ -3,37 +3,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My Book Offers</title>
+    <title>Book Requests</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-    <h2>My Book Offers</h2>
-    <div th:if="${#lists.isEmpty(bookOffers)}">
-        <p>You have not added any book offers yet.</p>
+    <h2>Book Requests</h2>
+    <div th:if="${#lists.isEmpty(requests)}">
+        <p>You have not received any book requests yet.</p>
     </div>
-    <div th:if="${!#lists.isEmpty(bookOffers)}">
+    <div th:if="${!#lists.isEmpty(requests)}">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Title</th>
+                    <th>User</th>
+                    <th>Book Title</th>
                     <th>Authors</th>
                     <th>Category</th>
-                    <th>Summary</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="bookOffer : ${bookOffers}">
-                    <td th:text="${bookOffer.title}">Title</td>
-                    <td th:text="${bookOffer.authors}">Authors</td>
-                    <td th:text="${bookOffer.category}">Category</td>
-                    <td th:text="${bookOffer.summary}">Summary</td>
+                <tr th:each="request : ${requests}">
+                    <td th:text="${request.user.username}">User</td>
+                    <td th:text="${request.bookOffer.title}">Title</td>
+                    <td th:text="${request.bookOffer.authors}">Authors</td>
+                    <td th:text="${request.bookOffer.category}">Category</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <a href="/user/bookoffer" class="btn btn-primary">Add New Book Offer</a>
     <!-- Back Button -->
     <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
     

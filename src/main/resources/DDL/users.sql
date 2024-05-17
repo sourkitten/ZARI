@@ -30,4 +30,13 @@ CREATE TABLE book_offers (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE book_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    book_offer_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (book_offer_id) REFERENCES book_offers(id)
+);
+
+
     

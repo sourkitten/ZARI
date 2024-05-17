@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Request Book</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Request Book</h2>
+    <form th:action="@{/user/bookrequest/save}" method="post" th:object="${bookRequest}">
+        <div class="form-group">
+            <label for="bookOfferId">Book Offer ID:</label>
+            <input type="number" class="form-control" id="bookOfferId" name="bookOfferId" th:field="*{bookOffer.id}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Request</button>
+        <!-- Back Button -->
+        <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+        
+    </form>
+</div>
+</body>
+</html>
