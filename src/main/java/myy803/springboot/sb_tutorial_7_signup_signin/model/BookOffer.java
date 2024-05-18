@@ -28,6 +28,11 @@ public class BookOffer {
     @ManyToOne
     @JoinColumn(name = "taken_by_user_id")
     private User takenByUser;
+    
+    // New field to track the user who gave the book
+    @ManyToOne
+    @JoinColumn(name = "given_by_user_id")
+    private User givenByUser;
 
     // Getters and Setters
     public int getId() {
@@ -77,7 +82,7 @@ public class BookOffer {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-
+    
     public User getTakenByUser() {
         return takenByUser;
     }
@@ -85,4 +90,13 @@ public class BookOffer {
     public void setTakenByUser(User takenByUser) {
         this.takenByUser = takenByUser;
     }
+
+    public User getGivenByUser() {
+        return givenByUser;
+    }
+
+    public void setGivenByUser(User givenByUser) {
+        this.givenByUser = givenByUser;
+    }
+
 }

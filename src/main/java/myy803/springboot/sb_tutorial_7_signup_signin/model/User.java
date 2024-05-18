@@ -15,7 +15,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_name", unique = true)
+    @Column(name = "username", unique = true)  // Ensure this matches your database column
     private String username;
 
     @Column(name = "password")
@@ -26,22 +26,22 @@ public class User implements UserDetails {
     private Role role;
 
     // Additional profile information
-    @Column(name = "full_name")
+    @Column(name = "full_name", nullable = true)
     private String fullName;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = true)
     private String address;
 
-    @Column(name = "age")
-    private int age;
+    @Column(name = "age", nullable = true)
+    private Integer age;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = true)
     private String phoneNumber;
 
-    @Column(name = "preferred_categories")
+    @Column(name = "preferred_categories", nullable = true)
     private String preferredCategories;
 
-    @Column(name = "favorite_authors")
+    @Column(name = "favorite_authors", nullable = true)
     private String favoriteAuthors;
 
     // Getters and setters
@@ -93,9 +93,10 @@ public class User implements UserDetails {
         this.address = address;
     }
 
-    public int getAge() {
-        return age;
+    public Integer getAge() {
+        return age != null ? age : 0;
     }
+
 
     public void setAge(int age) {
         this.age = age;

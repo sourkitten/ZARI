@@ -22,6 +22,9 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public List<Request> getRequestsByBookOfferId(int bookOfferId) {
         return requestDAO.findByBookOfferId(bookOfferId);
@@ -38,9 +41,11 @@ public class RequestServiceImpl implements RequestService {
         if (selectedRequest != null) {
             BookOffer bookOffer = selectedRequest.getBookOffer();
             User selectedUser = selectedRequest.getUser();
+            User currentUser = userService.getCurrentUser();
 
-            // Update the book offer to mark it as taken
+            // Update the book offer to mark it as taken and set the user who gave the book
             bookOffer.setTakenByUser(selectedUser);
+            bookOffer.setGivenByUser(currentUser);
             bookOfferDAO.save(bookOffer);
 
             // Notify users

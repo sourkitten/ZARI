@@ -71,6 +71,18 @@
             </li>
         </ul>
     </div>
+
+    <h2>Book Exchanges</h2>
+    <div th:if="${#lists.isEmpty(bookExchanges)}">
+        <p>No book exchanges yet.</p>
+    </div>
+    <div th:if="${!#lists.isEmpty(bookExchanges)}">
+        <ul>
+            <li th:each="exchange : ${bookExchanges}">
+                <span th:text="${exchange.givenByUser != null ? exchange.givenByUser.fullName : 'Unknown'}"></span> gave the book "<span th:text="${exchange.title}"></span>" to <span th:text="${exchange.takenByUser != null ? exchange.takenByUser.fullName : 'Unknown'}"></span>.
+            </li>
+        </ul>
+    </div>
 </div>
 
 <!-- Script to handle category selection -->
