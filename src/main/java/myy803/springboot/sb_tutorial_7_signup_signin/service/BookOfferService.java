@@ -7,4 +7,5 @@ import java.util.List;
 public interface BookOfferService {
     void saveBookOffer(BookOffer bookOffer);
     List<BookOffer> getBookOffersByUser(int userId);
+    BookOffer findById(int id);
 }

@@ -21,6 +21,7 @@
                     <th>Authors</th>
                     <th>Category</th>
                     <th>Summary</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,10 @@
                     <td th:text="${bookOffer.authors}">Authors</td>
                     <td th:text="${bookOffer.category}">Category</td>
                     <td th:text="${bookOffer.summary}">Summary</td>
+                    <td>
+                        <a th:href="@{/user/bookoffer/{bookOfferId}/requests(bookOfferId=${bookOffer.id})}" class="btn btn-info">View Requests</a>
+                        <a th:href="@{/user/bookoffer/{bookOfferId}/request(bookOfferId=${bookOffer.id})}" class="btn btn-primary">Request Book</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -36,7 +41,6 @@
     <a href="/user/bookoffer" class="btn btn-primary">Add New Book Offer</a>
     <!-- Back Button -->
     <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
-    
 </div>
 </body>
 </html>

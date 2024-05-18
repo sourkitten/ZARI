@@ -7,4 +7,5 @@ public interface UserService {
     boolean isUserPresent(User user);
     User getCurrentUser();
     void updateUserProfile(User updatedUser);
+    
 }

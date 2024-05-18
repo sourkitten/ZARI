@@ -22,4 +22,11 @@ public class BookOfferServiceImpl implements BookOfferService {
     public List<BookOffer> getBookOffersByUser(int userId) {
         return bookOfferDAO.findByUserId(userId);
     }
+    
+    @Override
+    public BookOffer findById(int id) {
+        return bookOfferDAO.findById(id).orElse(null);
+    }
+    
+
 }

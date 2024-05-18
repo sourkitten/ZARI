@@ -25,8 +25,11 @@ public class BookOffer {
     @Column(name = "summary", nullable = false)
     private String summary;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "taken_by_user_id")
+    private User takenByUser;
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -73,5 +76,13 @@ public class BookOffer {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public User getTakenByUser() {
+        return takenByUser;
+    }
+
+    public void setTakenByUser(User takenByUser) {
+        this.takenByUser = takenByUser;
     }
 }
