@@ -31,4 +31,5 @@ public class BookRequestServiceImpl implements BookRequestService {
     public List<BookRequest> getRequestsByUserId(int userId) {
         return bookRequestDAO.findByBookOfferUserId(userId);
     }
+
 }

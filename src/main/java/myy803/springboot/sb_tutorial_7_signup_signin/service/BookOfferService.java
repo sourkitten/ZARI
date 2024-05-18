@@ -8,4 +8,6 @@ public interface BookOfferService {
     void saveBookOffer(BookOffer bookOffer);
     List<BookOffer> getBookOffersByUser(int userId);
     BookOffer findById(int id);
+    List<BookOffer> findAllExcludingUser(int userId);
+
 }

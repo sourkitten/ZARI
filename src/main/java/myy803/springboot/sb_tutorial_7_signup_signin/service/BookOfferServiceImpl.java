@@ -28,5 +28,9 @@ public class BookOfferServiceImpl implements BookOfferService {
         return bookOfferDAO.findById(id).orElse(null);
     }
     
-
+    
+    @Override
+    public List<BookOffer> findAllExcludingUser(int userId) {
+        return bookOfferDAO.findByUserIdNot(userId);
+    }
 }

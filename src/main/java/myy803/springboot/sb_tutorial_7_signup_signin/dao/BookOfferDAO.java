@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BookOfferDAO extends JpaRepository<BookOffer, Integer> {
     List<BookOffer> findByUserId(int userId);
+    List<BookOffer> findByUserIdNot(int userId);
 }
