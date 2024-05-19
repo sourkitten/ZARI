@@ -38,4 +38,9 @@ public class BookOfferServiceImpl implements BookOfferService {
     public List<BookOffer> findAllBookOffers() {
         return bookOfferDAO.findAll();
     }
+    
+    @Override
+    public void deleteBookOffer(int bookOfferId) {
+        bookOfferDAO.deleteById(bookOfferId);
+    }
 }

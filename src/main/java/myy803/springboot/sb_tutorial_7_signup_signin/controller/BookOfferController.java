@@ -5,12 +5,14 @@ import myy803.springboot.sb_tutorial_7_signup_signin.model.BookRequest;
 import myy803.springboot.sb_tutorial_7_signup_signin.model.User;
 import myy803.springboot.sb_tutorial_7_signup_signin.service.BookOfferService;
 import myy803.springboot.sb_tutorial_7_signup_signin.service.BookRequestService;
+import myy803.springboot.sb_tutorial_7_signup_signin.service.RequestService;
 import myy803.springboot.sb_tutorial_7_signup_signin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,6 +30,9 @@ public class BookOfferController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private RequestService requestService;
 
     @GetMapping("/bookoffer")
     public String showBookOfferForm(Model model) {
@@ -78,6 +83,15 @@ public class BookOfferController {
     public String viewAllBookOffers(Model model) {
         model.addAttribute("bookOffers", bookOfferService.findAllBookOffers());
         return "user/allbookoffers";
+    }
+    
+    @PostMapping("/bookoffer/{bookOfferId}/delete")
+    public String deleteBookOffer(@PathVariable int bookOfferId) {
+        // delete the requests related to the book offer
+        requestService.deleteRequestsByBookOfferId(bookOfferId);
+        // delete the book offer itself
+        bookOfferService.deleteBookOffer(bookOfferId);
+        return "redirect:/user/bookoffers";
     }
 
 }

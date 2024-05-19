@@ -10,4 +10,5 @@ public interface BookOfferService {
     BookOffer findById(int id);
     List<BookOffer> findAllExcludingUser(int userId);
     List<BookOffer> findAllBookOffers();
+    void deleteBookOffer(int bookOfferId);
 }

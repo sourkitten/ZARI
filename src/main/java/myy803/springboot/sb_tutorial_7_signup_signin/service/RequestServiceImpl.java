@@ -68,5 +68,13 @@ public class RequestServiceImpl implements RequestService {
     public Request findRequestById(int requestId) {
         return requestDAO.findById(requestId).orElse(null);
     }
+    
+    @Override
+    public void deleteRequestsByBookOfferId(int bookOfferId) {
+        List<Request> requests = getRequestsByBookOfferId(bookOfferId);
+        for (Request request : requests) {
+            requestDAO.delete(request);
+        }
+    }
 
 }

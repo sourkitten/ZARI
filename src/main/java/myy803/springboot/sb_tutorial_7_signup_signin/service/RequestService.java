@@ -10,4 +10,5 @@ public interface RequestService {
     void selectRequest(int requestId, int bookOfferId);
     void notifyUsers(int selectedRequestId, int bookOfferId);
     Request findRequestById(int requestId); 
+    void deleteRequestsByBookOfferId(int bookOfferId); 
 }
