@@ -63,5 +63,10 @@ public class RequestServiceImpl implements RequestService {
             }
         }
     }
+    
+    @Override
+    public Request findRequestById(int requestId) {
+        return requestDAO.findById(requestId).orElse(null);
+    }
 
 }

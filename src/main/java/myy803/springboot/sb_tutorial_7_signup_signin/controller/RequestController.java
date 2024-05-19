@@ -27,15 +27,6 @@ public class RequestController {
 
     @Autowired
     private UserService userService;
-    
-
-    /*
-    @GetMapping("/bookoffer/{bookOfferId}/requests")
-    public String showRequestsForBookOffer(@PathVariable int bookOfferId, Model model) {
-        List<Request> requests = requestService.getRequestsByBookOfferId(bookOfferId);
-        model.addAttribute("requests", requests);
-        return "user/bookoffer_requests";
-    }*/
 
     @GetMapping("/bookoffer/{bookOfferId}/request")
     public String showRequestForm(@PathVariable int bookOfferId, Model model) {
@@ -69,6 +60,14 @@ public class RequestController {
         return "redirect:/user/bookoffer/" + bookOfferId + "/requests";
     }
     
+    @GetMapping("/bookoffer/{bookOfferId}/requests/{requestId}/contact")
+    public String showContactInfo(@PathVariable int bookOfferId, @PathVariable int requestId, Model model) {
+        Request request = requestService.findRequestById(requestId);
+        User user = request.getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("bookOfferId", bookOfferId);
+        return "user/contact_info";
+    }
 
 
 }

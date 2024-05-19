@@ -1,0 +1,23 @@
+<!-- contact_info.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contact Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Contact Information</h2>
+    <div>
+        <p><strong>Full Name:</strong> <span th:text="${user.fullName}"></span></p>
+        <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.username}"></span></p>
+        <p><strong>Address:</strong> <span th:text="${user.address}"></span></p>
+    </div>
+    <!-- Back Button -->
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+</div>
+</body>
+</html>
