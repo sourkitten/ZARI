@@ -1,11 +1,17 @@
 package myy803.springboot.sb_tutorial_7_signup_signin.service;
 
 import myy803.springboot.sb_tutorial_7_signup_signin.dao.BookOfferDAO;
+import myy803.springboot.sb_tutorial_7_signup_signin.dao.UserDAO;
 import myy803.springboot.sb_tutorial_7_signup_signin.model.BookOffer;
+import myy803.springboot.sb_tutorial_7_signup_signin.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookOfferServiceImpl implements BookOfferService {
@@ -13,6 +19,9 @@ public class BookOfferServiceImpl implements BookOfferService {
     @Autowired
     private BookOfferDAO bookOfferDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+    
     @Override
     public void saveBookOffer(BookOffer bookOffer) {
         bookOfferDAO.save(bookOffer);
@@ -53,5 +62,26 @@ public class BookOfferServiceImpl implements BookOfferService {
         }
     }
     
+    @Override
+    public List<BookOffer> recommendByCategory(int userId) {
+        User user = userDAO.findById(userId).orElse(null);
+        if (user != null) {
+            List<String> categories = Arrays.asList(user.getPreferredCategories().split(","));
+            return bookOfferDAO.findByCategoryIn(categories);
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<BookOffer> recommendByAuthor(int userId) {
+        User user = userDAO.findById(userId).orElse(null);
+        if (user != null) {
+            List<String> authors = Arrays.asList(user.getFavoriteAuthors().split(","));
+            return authors.stream()
+                          .flatMap(author -> bookOfferDAO.findByAuthorsContaining(author).stream())
+                          .collect(Collectors.toList());
+        }
+        return new ArrayList<>();
+    }   
     
 }

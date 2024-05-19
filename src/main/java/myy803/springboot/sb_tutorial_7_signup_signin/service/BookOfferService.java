@@ -12,4 +12,6 @@ public interface BookOfferService {
     List<BookOffer> findAllBookOffers();
     void deleteBookOffer(int bookOfferId);
     List<BookOffer> searchBookOffers(String title, String authors, boolean exactMatch);
+    List<BookOffer> recommendByCategory(int userId);
+    List<BookOffer> recommendByAuthor(int userId);
 }

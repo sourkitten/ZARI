@@ -1,0 +1,44 @@
+<!-- recommendation_results.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Recommendation Results</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Book Recommendations</h2>
+    <div th:if="${#lists.isEmpty(recommendations)}">
+        <p>No recommendations found based on your selected strategy.</p>
+    </div>
+    <div th:if="${!#lists.isEmpty(recommendations)}">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Authors</th>
+                    <th>Category</th>
+                    <th>Summary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bookOffer : ${recommendations}">
+                    <td th:text="${bookOffer.title}">Title</td>
+                    <td th:text="${bookOffer.authors}">Authors</td>
+                    <td th:text="${bookOffer.category}">Category</td>
+                    <td th:text="${bookOffer.summary}">Summary</td>
+                    <td>
+                        <a th:href="@{/user/bookoffer/{bookOfferId}/request(bookOfferId=${bookOffer.id})}" class="btn btn-primary">Request Book</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+</div>
+</body>
+</html>

@@ -15,5 +15,10 @@ public interface BookOfferDAO extends JpaRepository<BookOffer, Integer> {
     @Query("SELECT b FROM BookOffer b WHERE b.title LIKE %:title% AND b.authors LIKE %:authors%")
     List<BookOffer> findByTitleAndAuthorsContaining(@Param("title") String title, @Param("authors") String authors); // Approximate match search}
 
-   
+    @Query("SELECT b FROM BookOffer b WHERE b.category IN :categories")
+    List<BookOffer> findByCategoryIn(@Param("categories") List<String> categories);
+
+    @Query("SELECT b FROM BookOffer b WHERE b.authors LIKE CONCAT('%', :author, '%')")
+    List<BookOffer> findByAuthorsContaining(@Param("author") String author);
+    
 }    
