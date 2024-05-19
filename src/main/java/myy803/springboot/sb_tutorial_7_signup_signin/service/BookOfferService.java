@@ -11,4 +11,5 @@ public interface BookOfferService {
     List<BookOffer> findAllExcludingUser(int userId);
     List<BookOffer> findAllBookOffers();
     void deleteBookOffer(int bookOfferId);
+    List<BookOffer> searchBookOffers(String title, String authors, boolean exactMatch);
 }

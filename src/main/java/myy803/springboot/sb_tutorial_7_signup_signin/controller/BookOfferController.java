@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -94,4 +95,16 @@ public class BookOfferController {
         return "redirect:/user/bookoffers";
     }
 
+    @GetMapping("/search")
+    public String showSearchForm(Model model) {
+        return "user/search";
+    }
+
+    @PostMapping("/search")
+    public String searchBookOffers(@RequestParam("title") String title, @RequestParam("authors") String authors,
+                                   @RequestParam(value = "exactMatch", required = false, defaultValue = "false") boolean exactMatch, Model model) {
+        List<BookOffer> searchResults = bookOfferService.searchBookOffers(title, authors, exactMatch);
+        model.addAttribute("searchResults", searchResults);
+        return "user/search_results";
+    }
 }

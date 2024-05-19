@@ -43,4 +43,15 @@ public class BookOfferServiceImpl implements BookOfferService {
     public void deleteBookOffer(int bookOfferId) {
         bookOfferDAO.deleteById(bookOfferId);
     }
+    
+    @Override
+    public List<BookOffer> searchBookOffers(String title, String authors, boolean exactMatch) {
+        if (exactMatch) {
+            return bookOfferDAO.findByTitleAndAuthors(title, authors);
+        } else {
+            return bookOfferDAO.findByTitleAndAuthorsContaining(title, authors);
+        }
+    }
+    
+    
 }
