@@ -74,12 +74,10 @@ public class BookOfferController {
         return "redirect:/user/bookoffers";
     }
     
-    @GetMapping("/bookOffers")
-    public String viewBookOffers(Model model) {
-        User currentUser = userService.getCurrentUser();
-        List<BookOffer> bookOffers = bookOfferService.findAllExcludingUser(currentUser.getId());
-        model.addAttribute("bookOffers", bookOffers);
-        return "bookOffers";
+    @GetMapping("/allbookoffers")
+    public String viewAllBookOffers(Model model) {
+        model.addAttribute("bookOffers", bookOfferService.findAllBookOffers());
+        return "user/allbookoffers";
     }
 
 }

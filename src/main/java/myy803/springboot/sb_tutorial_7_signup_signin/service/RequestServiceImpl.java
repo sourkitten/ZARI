@@ -48,7 +48,6 @@ public class RequestServiceImpl implements RequestService {
             bookOffer.setGivenByUser(currentUser);
             bookOfferDAO.save(bookOffer);
 
-            // Notify users
             notifyUsers(requestId, bookOfferId);
         }
     }
@@ -64,4 +63,5 @@ public class RequestServiceImpl implements RequestService {
             }
         }
     }
+
 }

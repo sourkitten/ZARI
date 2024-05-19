@@ -18,7 +18,7 @@ public class BookOfferServiceImpl implements BookOfferService {
         bookOfferDAO.save(bookOffer);
     }
 
-    @Override
+    @Override	
     public List<BookOffer> getBookOffersByUser(int userId) {
         return bookOfferDAO.findByUserId(userId);
     }
@@ -32,5 +32,10 @@ public class BookOfferServiceImpl implements BookOfferService {
     @Override
     public List<BookOffer> findAllExcludingUser(int userId) {
         return bookOfferDAO.findByUserIdNot(userId);
+    }
+    
+    @Override
+    public List<BookOffer> findAllBookOffers() {
+        return bookOfferDAO.findAll();
     }
 }

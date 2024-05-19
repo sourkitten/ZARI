@@ -9,5 +9,5 @@ public interface BookOfferService {
     List<BookOffer> getBookOffersByUser(int userId);
     BookOffer findById(int id);
     List<BookOffer> findAllExcludingUser(int userId);
-
+    List<BookOffer> findAllBookOffers();
 }
