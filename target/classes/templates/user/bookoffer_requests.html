@@ -1,0 +1,41 @@
+<!-- bookoffer_requests.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Requests for Book Offer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Requests for Book Offer</h2>
+    <div th:if="${#lists.isEmpty(requests)}">
+        <p>No requests for this book offer yet.</p>
+    </div>
+    <div th:if="${!#lists.isEmpty(requests)}">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="request : ${requests}">
+                    <td th:text="${request.user.fullName}">User Name</td>
+                    <td th:text="${request.message}">Message</td>
+                    <td>
+                        <form th:action="@{/user/bookoffer/{bookOfferId}/requests/{requestId}/select(bookOfferId=${bookOfferId}, requestId=${request.id})}" method="post">
+                            <button type="submit" class="btn btn-success">Select</button>
+                        </form>
+                        <a th:href="@{/user/bookoffer/{bookOfferId}/requests/{requestId}/contact(bookOfferId=${bookOfferId}, requestId=${request.id})}" class="btn btn-info">View Contact Info</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

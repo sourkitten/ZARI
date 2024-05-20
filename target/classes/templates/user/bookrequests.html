@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Book Requests</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Book Requests</h2>
+    <div th:if="${#lists.isEmpty(requests)}">
+        <p>You have not received any book requests yet.</p>
+    </div>
+    <div th:if="${!#lists.isEmpty(requests)}">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Book Title</th>
+                    <th>Authors</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="request : ${requests}">
+                    <td th:text="${request.user.username}">User</td>
+                    <td th:text="${request.bookOffer.title}">Title</td>
+                    <td th:text="${request.bookOffer.authors}">Authors</td>
+                    <td th:text="${request.bookOffer.category}">Category</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Back Button -->
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+    
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- recommendations.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Book Recommendations</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Choose a Recommendation Strategy</h2>
+    <form th:action="@{/user/recommendations}" method="post">
+        <div class="form-group">
+            <label for="strategy">Recommendation Strategy:</label>
+            <select class="form-control" id="strategy" name="strategy">
+                <option value="category">By Preferred Categories</option>
+                <option value="author">By Favorite Authors</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Recommendations</button>
+    </form>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+</div>
+</body>
+</html>

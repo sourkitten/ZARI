@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Book Offer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Add Book Offer</h2>
+    <form th:action="@{/user/bookoffer/save}" method="post" th:object="${bookOffer}" onsubmit="submitCategories()">
+        <!-- Book Title -->
+        <div class="form-group">
+            <label for="title">Book Title:</label>
+            <input type="text" class="form-control" id="title" name="title" th:field="*{title}" required>
+        </div>
+        <!-- Authors -->
+        <div class="form-group">
+            <label for="authors">Authors:</label>
+            <input type="text" class="form-control" id="authors" name="authors" th:field="*{authors}" required>
+        </div>
+        <!-- Category -->
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="hidden" id="category" name="category" th:field="*{category}">
+            <select multiple class="form-control" id="categorySelect">
+                <option value="Art">Art</option>
+                <option value="Comic">Comic</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Biographies">Biographies</option>
+                <option value="History">History</option>
+                <option value="Science">Science</option>
+                <option value="Literature">Literature</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Crime">Crime</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <!-- Summary -->
+        <div class="form-group">
+            <label for="summary">Summary:</label>
+            <textarea class="form-control" id="summary" name="summary" th:field="*{summary}" rows="5" required></textarea>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+<!-- Script to handle category selection -->
+<script>
+    function submitCategories() {
+        const selectElement = document.getElementById('categorySelect');
+        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+        const categoriesString = selectedOptions.join(',');
+        document.getElementById('category').value = categoriesString;
+    }
+</script>
+</body>
+</html>

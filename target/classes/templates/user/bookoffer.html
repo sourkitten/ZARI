@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Book Offer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Add Book Offer</h2>
+    <form th:action="@{/user/bookoffer/save}" method="post" th:object="${bookOffer}" onsubmit="submitCategories()">
+        <!-- Book Title -->
+        <div class="form-group">
+            <label for="title">Book Title:</label>
+            <input type="text" class="form-control" id="title" name="title" th:field="*{title}" required>
+        </div>
+        <!-- Authors -->
+        <div class="form-group">
+            <label for="authors">Authors:</label>
+            <input type="text" class="form-control" id="authors" name="authors" th:field="*{authors}" required>
+        </div>
+        <!-- Category -->
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="hidden" id="category" name="category" th:field="*{category}">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryArt" value="Art">
+                <label class="form-check-label" for="categoryArt">Art</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryComic" value="Comic">
+                <label class="form-check-label" for="categoryComic">Comic</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryFantasy" value="Fantasy">
+                <label class="form-check-label" for="categoryFantasy">Fantasy</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryFiction" value="Fiction">
+                <label class="form-check-label" for="categoryFiction">Fiction</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryBiographies" value="Biographies">
+                <label class="form-check-label" for="categoryBiographies">Biographies</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryHistory" value="History">
+                <label class="form-check-label" for="categoryHistory">History</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryScience" value="Science">
+                <label class="form-check-label" for="categoryScience">Science</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryLiterature" value="Literature">
+                <label class="form-check-label" for="categoryLiterature">Literature</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryAdventure" value="Adventure">
+                <label class="form-check-label" for="categoryAdventure">Adventure</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryCrime" value="Crime">
+                <label class="form-check-label" for="categoryCrime">Crime</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="categoryOther" value="Other">
+                <label class="form-check-label" for="categoryOther">Other</label>
+            </div>
+        </div>
+        <!-- Summary -->
+        <div class="form-group">
+            <label for="summary">Summary:</label>
+            <textarea class="form-control" id="summary" name="summary" th:field="*{summary}" rows="5" required></textarea>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <!-- Back Button -->
+        <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+    </form>
+</div>
+
+<!-- Script to handle category selection -->
+<script>
+    function submitCategories() {
+        const checkboxes = document.querySelectorAll('.form-check-input');
+        const selectedCategories = [];
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedCategories.push(checkbox.value);
+            }
+        });
+        document.getElementById('category').value = selectedCategories.join(',');
+    }
+</script>
+</body>
+</html>
