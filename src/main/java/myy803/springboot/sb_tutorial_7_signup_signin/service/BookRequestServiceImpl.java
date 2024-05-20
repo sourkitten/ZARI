@@ -37,7 +37,7 @@ public class BookRequestServiceImpl implements BookRequestService {
     public List<BookRequest> getRequestsByUserId(int userId) {
         return bookRequestDAO.findByBookOfferUserId(userId);
     }
-    
+    /*
     @Override
     public void createBookRequest(int bookOfferId, int userId, String message) {
         BookRequest bookRequest = new BookRequest();
@@ -49,6 +49,6 @@ public class BookRequestServiceImpl implements BookRequestService {
         bookRequest.setUser(user);
         
         bookRequestDAO.save(bookRequest);
-    }
+    }*/
 
 }
